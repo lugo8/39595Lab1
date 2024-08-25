@@ -4,6 +4,7 @@
 #include <optional>
 #include <stddef.h>
 #include <stdlib.h>
+#include <iostream>
 
 /** A single key/value pair in the linked list */
 struct node
@@ -28,6 +29,8 @@ public:
      * @brief Create an empty list
      */
     hash_list();
+
+    void print_list(); //Student added function to aid in debugging
 
     /**-----------------------------------------------------------------------------------
      * START Part 1

@@ -3,8 +3,30 @@
 hash_list::hash_list() 
 {
     size = 0;
-    head = nullptr;
-    iter_ptr = nullptr;
+    head = NULL;
+    iter_ptr = NULL;
+}
+
+//Student added to aid in debugging
+void hash_list::print_list()
+{
+    node* iter = head;
+    
+    if(head == NULL)
+    {
+        std::cout << "Empty List" << std::endl;
+    }
+
+    else
+    {
+
+        while(iter != NULL)
+        {
+            std::cout << iter->value << " | ";
+            iter = iter->next;
+        }
+        std::cout << "\n";
+    }
 }
 
 /**-----------------------------------------------------------------------------------
@@ -13,56 +35,45 @@ hash_list::hash_list()
 
 void hash_list::insert(int key, float value) 
 {
-    node* iter_ptr = head;
+    node* iter = head;
 
-    //Check to see if key is in bounds of linked list or
-    //is adding beyond one bigger than current list
-    if(key < 0 || key > size)
+    //Empty list
+    if(head == NULL)
     {
-        return std::nullopt;
+        //Initialize the list
+        node* first = new node();
+        first->key = key;
+        first->value = value;
+        first->next = NULL;
+        head = first;
+
     }
-
-    //If adding to end of list
-    if(key == size) 
-    {
-        //Empty list
-        if(head == nullptr)
-        {
-            //Initialize the list
-            node first = {.key = 0, .value = value, .next = nullptr};
-            head = &first;
-        }
-
-        else
-        {
-            //Find end of list
-            while(iter_ptr != nullptr && iter_ptr->next != nullptr)
-            {
-                iter_ptr = iter_ptr->next;
-            }
-
-            node last = {.key = size, .value = value, .next = nullptr};
-
-            iter_ptr->next = &last;
-
-        }
-
-        size++;
-        
-    }
-
-    //Replacing a current key/value pair
+    
     else
     {
-        //Find the key
-        while(iter_ptr->key != key)
+        //Find the key or end of list
+        while(iter->next != NULL && iter->key != key)
         {
-            iter_ptr = iter_ptr->next;
+            iter = iter->next;
         }
 
-        iter_ptr->value = value;
+        //Update key/value pair
+        if(iter->key == key)
+        {
+            iter->value = value;
+        }
 
+        //New key
+        else
+        {
+            node* last = new node();
+            last->key = key;
+            last->value = value;
+            last->next = NULL;
+            iter->next = last;
+        }
     }
+    
 }
 
 std::optional<float> hash_list::get_value(int key) const { return std::nullopt; }
