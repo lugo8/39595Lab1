@@ -8,6 +8,7 @@ hash_list::hash_list()
 }
 
 //Student added to aid in debugging
+//Prints out the linked list
 void hash_list::print_list()
 {
     node* iter = head;
@@ -47,6 +48,8 @@ void hash_list::insert(int key, float value)
         first->next = NULL;
         head = first;
 
+        size++;
+
     }
     
     else
@@ -71,16 +74,44 @@ void hash_list::insert(int key, float value)
             last->value = value;
             last->next = NULL;
             iter->next = last;
+
+            size++;
         }
     }
     
 }
 
-std::optional<float> hash_list::get_value(int key) const { return std::nullopt; }
+std::optional<float> hash_list::get_value(int key) const 
+{
+    //Cannot have a value if list is empty
+    if(head == NULL)
+    {
+        return std::nullopt; 
+    }
+
+    node* iter = head;
+
+    //Look through all nodes
+    while(iter != NULL)
+    {
+        if(iter->key == key)
+        {
+            return iter->value;
+        }
+        
+        iter = iter->next;
+    }
+    
+    //If no matching key, return empty optional
+    return std::nullopt; 
+}
 
 bool hash_list::remove(int key) { return false; }
 
-size_t hash_list::get_size() const { return 0; }
+size_t hash_list::get_size() const 
+{ 
+    return size; 
+}
 
 hash_list::~hash_list() {}
 
