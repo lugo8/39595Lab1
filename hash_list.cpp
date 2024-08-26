@@ -106,7 +106,9 @@ std::optional<float> hash_list::get_value(int key) const
     return std::nullopt; 
 }
 
-bool hash_list::remove(int key) { return false; }
+bool hash_list::remove(int key) { 
+    //hello
+    return false; }
 
 size_t hash_list::get_size() const 
 { 
