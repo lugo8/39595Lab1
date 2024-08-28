@@ -107,8 +107,37 @@ std::optional<float> hash_list::get_value(int key) const
 }
 
 bool hash_list::remove(int key) { 
-    //hello
-    return false; }
+    //
+    
+    
+    if(head == NULL){
+     return false;    
+    } 
+
+    node* prevIter = head;
+    if(prevIter->key == key){
+        head = head->next;
+        delete prevIter;
+        return true;
+    }
+    node* iter = head->next;//to be continued
+
+    while(iter != NULL)
+    {
+        if(iter->key == key)
+        {
+            prevIter->next = iter->next; //link the 2 nodes beside the one to be deleted (iter)
+            delete iter; //clear the mem
+            return true;
+        }
+        
+        iter = iter->next; //check next node
+        prevIter = prevIter->next; //previous node must also increment to follow
+    }
+    //at this point every node has been searched for the key and it was not found, so return false
+    return false;
+    
+}
 
 size_t hash_list::get_size() const 
 { 
