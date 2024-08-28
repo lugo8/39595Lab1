@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    //list.print_list();
+    list.print_list();
 
     if (!list.get_value(3).has_value())
     {

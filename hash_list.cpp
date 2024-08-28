@@ -115,7 +115,27 @@ size_t hash_list::get_size() const
     return size; 
 }
 
-hash_list::~hash_list() {}
+hash_list::~hash_list() 
+{
+    //Empty list
+    if(head == NULL)
+    {
+        return;
+    }
+
+    node* curr = head;
+
+    node* next = curr->next;
+
+    while(next != NULL)
+    {
+        delete curr;
+        curr = next;
+        next = next->next;
+    }
+
+    delete curr;
+}
 
 /**-----------------------------------------------------------------------------------
  * END Part 1
