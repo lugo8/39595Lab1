@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 
 #ifdef PART1
     hash_list list;
-    std::cout << "TEST 1:" << std::endl; //TEST1
+    //std::cout << "TEST 1:" << std::endl; //TEST1
 
     if (list.get_size() != 0)
     {
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    list.print_list();
+    //list.print_list();
 
     if (!list.get_value(3).has_value())
     {
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    std::cout << list.get_value(3).value() << std::endl;
+    //std::cout << list.get_value(3).value() << std::endl;
 
      if (!list.remove(3))
      {
@@ -77,38 +77,38 @@ int main(int argc, char *argv[])
          std::cout << "Unexpected 3 in list" << std::endl;
          exit(1);
      }
-     list.print_list();
+     //list.print_list();
     if (!list.remove(6))
      {
          std::cout << "Failed to remove 6 from list" << std::endl;
          exit(1);
      }
-     list.print_list();
+     //list.print_list();
     if (list.remove(6))
      {
          std::cout << "thats no good!" << std::endl;
          exit(1);
      }
-     list.print_list();
+     //list.print_list();
 
     if (!list.remove(5))
      {
          std::cout << "Failed to remove 5 from list" << std::endl;
          exit(1);
      }
-     list.print_list();
+     //list.print_list();
     if (!list.remove(4))
      {
          std::cout << "Failed to remove 4 from list" << std::endl;
          exit(1);
      }
-     list.print_list();
+     //list.print_list();
     if (list.remove(4))
      {
          std::cout << "Failed to recognise empty list" << std::endl;
          exit(1);
      }
-     list.print_list();
+     //list.print_list();
 #endif
 
 #ifdef PART2
