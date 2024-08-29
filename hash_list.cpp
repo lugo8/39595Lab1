@@ -118,6 +118,7 @@ bool hash_list::remove(int key) {
     if(prevIter->key == key){
         head = head->next;
         delete prevIter;
+        size--;
         return true;
     }
     node* iter = head->next;//to be continued
@@ -128,6 +129,7 @@ bool hash_list::remove(int key) {
         {
             prevIter->next = iter->next; //link the 2 nodes beside the one to be deleted (iter)
             delete iter; //clear the mem
+            size--;
             return true;
         }
         
