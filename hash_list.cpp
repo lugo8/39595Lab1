@@ -177,7 +177,72 @@ hash_list::~hash_list()
  * START Part 2
  *------------------------------------------------------------------------------------*/
 
-hash_list::hash_list(const hash_list &other) {}
+hash_list::hash_list(const hash_list &other) 
+{
+    //Deep copy components
+    this->size = other.size;
+    node* newIter = new node();
+    this->head = hash_list::cpy_list(this->head, other.head, other.iter_ptr, newIter);
+    this->iter_ptr = newIter;
+}
+
+node* hash_list::cpy_node(const node* lastNode)
+{
+    //Deep copy of a node
+    node* newNode = new node();
+    newNode->key = lastNode->key;
+    newNode->next = NULL;
+    newNode->value = lastNode->value;
+
+    return newNode;
+}
+
+node* hash_list::cpy_list(node* head, node* curr, node* lastIter, node* newIter)
+{
+    //Init
+    if(curr == NULL)
+    {
+        return NULL;
+    }
+
+    int startKey = curr->key;
+    node* newHead = NULL;
+    node* newCurr = NULL;
+
+    //Iterate through and make copies of each node
+    while(curr != NULL)
+    {
+        //Make a copy of current node
+        node* cpy = hash_list::cpy_node(curr);
+
+        if(curr->key == startKey)
+        {
+            //If start
+            newHead = cpy;
+            newCurr = cpy;
+        }
+        else
+        {
+            newCurr->next = cpy;
+            newCurr = cpy;
+        }
+
+        //If iter is the current node
+        if(curr == lastIter)
+        {
+            newIter = cpy;
+        }
+
+
+        curr = curr->next;
+
+    }
+
+    newCurr->next = NULL;
+
+    return newHead;
+}
+
 
 hash_list &hash_list::operator=(const hash_list &other) { return *this; }
 

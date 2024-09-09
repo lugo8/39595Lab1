@@ -161,6 +161,9 @@ private:
 
     /** The node that the iterator is currently pointing to */
     node *iter_ptr;
+
+    node* cpy_node(const node* lastNode);
+    node* cpy_list(node* head, node* otherHead, node* lastIter, node* newIter);
 };
 
 #endif

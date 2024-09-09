@@ -65,6 +65,16 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
+    hash_list cpy = hash_list(list);
+
+    cpy.remove(6);
+
+    std::cout << "ORIGINAL: " << std::endl;
+    list.print_list();
+
+    std::cout << "COPY: " << std::endl;
+    cpy.print_list();
+
     //std::cout << list.get_value(3).value() << std::endl;
 
      if (!list.remove(3))
@@ -129,6 +139,7 @@ int main(int argc, char *argv[])
 #endif
 
 #ifdef PART2
+
     iterator_example(list);
 #endif
 
