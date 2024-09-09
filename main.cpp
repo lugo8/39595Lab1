@@ -65,23 +65,29 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    hash_list list2;
-    list2.insert(7, 7);
-    list2.insert(8, 8);
-    list2.insert(9, 9);
-    list2.insert(10, 10);
+    // hash_list list2;
+    // list2.insert(7, 7);
+    // list2.insert(8, 8);
+    // list2.insert(9, 9);
+    // list2.insert(10, 10);
 
-    hash_list list3 = list;
+    // hash_list list3 = list;
 
-    list3 = list2;
+    // std::cout << "ORIGINAL: " << std::endl;
+    // list.print_list();
 
-    std::cout << "ORIGINAL: " << std::endl;
-    list.print_list();
+    // std::cout << "list3: " << std::endl;
+    // list3.print_list();
 
-    std::cout << "Cpy: " << std::endl;
-    list3.print_list();
+    // list3 = list2;
 
-    //std::cout << list.get_value(3).value() << std::endl;
+    // list2.remove(7);
+
+    // std::cout << "list2: " << std::endl;
+    // list2.print_list();
+
+    // std::cout << "list3: " << std::endl;
+    // list3.print_list();
 
      if (!list.remove(3))
      {

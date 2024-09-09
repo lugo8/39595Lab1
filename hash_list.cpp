@@ -275,10 +275,21 @@ hash_list &hash_list::operator=(const hash_list &other)
     return *this; 
 }
 
-void hash_list::reset_iter() {}
+void hash_list::reset_iter() 
+{
+    this->iter_ptr = this->head;
+}
 
 
-void hash_list::increment_iter() {}
+void hash_list::increment_iter() 
+{
+    if(this->iter_ptr == NULL)
+    {
+        return;
+    }
+    
+    this->iter_ptr = this->iter_ptr->next;
+}
 
 
 std::optional<std::pair<const int *, float *>> hash_list::get_iter_value() { return std::nullopt; }
