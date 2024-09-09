@@ -65,15 +65,21 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    hash_list cpy = hash_list(list);
+    hash_list list2;
+    list2.insert(7, 7);
+    list2.insert(8, 8);
+    list2.insert(9, 9);
+    list2.insert(10, 10);
 
-    cpy.remove(6);
+    hash_list list3 = list;
+
+    list3 = list2;
 
     std::cout << "ORIGINAL: " << std::endl;
     list.print_list();
 
-    std::cout << "COPY: " << std::endl;
-    cpy.print_list();
+    std::cout << "Cpy: " << std::endl;
+    list3.print_list();
 
     //std::cout << list.get_value(3).value() << std::endl;
 

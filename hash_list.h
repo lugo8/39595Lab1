@@ -163,7 +163,7 @@ private:
     node *iter_ptr;
 
     node* cpy_node(const node* lastNode);
-    node* cpy_list(node* head, node* otherHead, node* lastIter, node* newIter);
+    node* cpy_list(node* curr, node* lastIter, node*& newIter);
 };
 
 #endif

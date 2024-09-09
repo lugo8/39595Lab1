@@ -158,6 +158,13 @@ hash_list::~hash_list()
 
     node* next = curr->next;
 
+    if(next == NULL)
+    {
+        delete next;
+        delete curr;
+        return;
+    }
+
     while(next != NULL)
     {
         delete curr;
@@ -181,9 +188,17 @@ hash_list::hash_list(const hash_list &other)
 {
     //Deep copy components
     this->size = other.size;
-    node* newIter = new node();
-    this->head = hash_list::cpy_list(this->head, other.head, other.iter_ptr, newIter);
-    this->iter_ptr = newIter;
+    if (other.head == NULL) 
+    {
+        this->head = NULL;
+        this->iter_ptr = NULL;
+    } 
+    else 
+    {
+        node* newIter = NULL;  // Keep track of iter_ptr in the new list
+        this->head = hash_list::cpy_list(other.head, other.iter_ptr, newIter);
+        this->iter_ptr = newIter;  // Update iter_ptr correctly
+    }
 }
 
 node* hash_list::cpy_node(const node* lastNode)
@@ -197,7 +212,7 @@ node* hash_list::cpy_node(const node* lastNode)
     return newNode;
 }
 
-node* hash_list::cpy_list(node* head, node* curr, node* lastIter, node* newIter)
+node* hash_list::cpy_list(node* curr, node* lastIter, node*& newIter)
 {
     //Init
     if(curr == NULL)
@@ -244,7 +259,21 @@ node* hash_list::cpy_list(node* head, node* curr, node* lastIter, node* newIter)
 }
 
 
-hash_list &hash_list::operator=(const hash_list &other) { return *this; }
+hash_list &hash_list::operator=(const hash_list &other) 
+{
+    //Operator
+    if(this == &other) 
+    {
+        return *this;
+    }
+
+    hash_list temp = other;
+    std::swap(this->size, temp.size);
+    std::swap(this->head, temp.head);
+    std::swap(this->iter_ptr, temp.iter_ptr);
+
+    return *this; 
+}
 
 void hash_list::reset_iter() {}
 
