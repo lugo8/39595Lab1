@@ -278,7 +278,7 @@ hash_list &hash_list::operator=(const hash_list &other)
 void hash_list::reset_iter() 
 {
     this->iter_ptr = this->head;
-}
+}//looks good
 
 
 void hash_list::increment_iter() 
@@ -289,13 +289,30 @@ void hash_list::increment_iter()
     }
     
     this->iter_ptr = this->iter_ptr->next;
-}
+} //looks good
 
 
-std::optional<std::pair<const int *, float *>> hash_list::get_iter_value() { return std::nullopt; }
+std::optional<std::pair<const int *, float *>> hash_list::get_iter_value() {
+    
+    if(this->iter_ptr == NULL){
+        return std::nullopt;
+     } 
+     else{
+        const int* keyinpair = &(this->iter_ptr->key);
+        float* valinpair = &(this->iter_ptr->value);
+        return std::make_optional(std::make_pair(keyinpair, valinpair));
+     }
+    }
 
 
-bool hash_list::iter_at_end() { return false; }
+bool hash_list::iter_at_end() {     
+    if(this->iter_ptr == NULL){
+        return true;
+    }else{
+        return false;
+    }
+     
+     }
 /**-----------------------------------------------------------------------------------
  * END Part 2
  *------------------------------------------------------------------------------------*/
